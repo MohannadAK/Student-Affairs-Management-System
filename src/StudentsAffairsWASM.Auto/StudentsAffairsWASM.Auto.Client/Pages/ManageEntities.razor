@@ -1,0 +1,80 @@
+﻿@page "/manage-entities"
+
+@namespace StudentsAffairsWASM.Auto.Client.Components.Pages
+@using Assignments.Client.Components
+@using Courses.Client.Components
+@using Lectures.Client.Components
+
+<h3>Manage Entities</h3>
+
+@if (isLoading)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link @((userFormActive) ? "active": "")" @onclick="ShowUserForm">Users</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link @((courseFormActive) ? "active": "")" @onclick="ShowCourseForm">Courses</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link @((lectureFormActive) ? "active": "")" @onclick="ShowLectureForm">Lectures</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link @((assignmentFormActive) ? "active": "")" @onclick="ShowAssignmentForm">Assignments</button>
+		</li>
+	</ul>
+	<div class="split-container">
+		<!-- Left Side - Form -->
+		<div class="left-side rounded-container">
+			@if (userFormActive)
+			{
+				<h3>Create User</h3>
+				<InputSelect @bind-Value="selectedRole" class="form-control">
+					<option value="">-- Select Role --</option>
+					<option value="Student">Student</option>
+					<option value="Tutor">Tutor</option>
+					<option value="Admin">Admin</option>
+				</InputSelect>
+				<AddNewUserForm SelectedRole=selectedRole/>
+			}
+			else if (courseFormActive)
+			{
+				<h3>Create Course</h3>            <AddNewCourseForm />
+			}
+			else if (lectureFormActive)
+			{
+				<h3>Create Lecture</h3>            <AddNewLectureForm />
+			}
+			else if (assignmentFormActive)
+			{
+				<h3>Create Assignment</h3>            <AddNewAssignmentForm />
+			}
+		</div>
+
+		<!-- Right Side - Table -->
+		<div class="right-side rounded-container">
+			@if (userFormActive)
+			{
+				<h3>User Table</h3>            <ViewUserTable SelectedRole="selectedRole" />
+			}
+			else if (courseFormActive)
+			{
+				<h3>Course Table</h3>
+				<ViewCourseTable />
+			}
+			else if (lectureFormActive)
+			{
+				<h3>Lecture Table</h3>            <ViewLectureTable />
+			}
+			else if (assignmentFormActive)
+			{
+				<h3>Assignment Table</h3>
+				<ViewAssignmentTable />
+			}
+		</div>
+	</div>
+}

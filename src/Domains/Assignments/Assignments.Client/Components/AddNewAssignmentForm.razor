@@ -1,0 +1,40 @@
+﻿@namespace Assignments.Client.Components
+
+<EditForm Model="@newAssignment" OnValidSubmit="AddAssignment">
+    <FluentValidationValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <InputText id="title" class="form-control" @bind-Value="newAssignment.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="newAssignment.Description" />
+    </div>
+
+    <div class="mb-3">
+        <label for="dueDate" class="form-label">Due Date</label>
+        <InputDate id="dueDate" class="form-control" @bind-Value="newAssignment.DueDate" />
+    </div>
+
+    <div class="mb-3">
+        <label for="maxScore" class="form-label">Max Score</label>
+        <InputNumber id="maxScore" class="form-control" @bind-Value="newAssignment.MaxScore" />
+    </div>
+
+    <div class="mb-3">
+        <label for="course" class="form-label">Course</label>
+        <InputSelect id="course" class="form-control" @bind-Value="newAssignment.CourseId">
+            @foreach (var course in CoursesList)
+            {
+                <option value="@course.Id">@course.Title</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => newAssignment.CourseId)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+

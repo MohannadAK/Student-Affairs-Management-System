@@ -1,0 +1,21 @@
+﻿<table class="table">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var student in StudentsList)
+		{
+			<tr>
+				<td>@student.Username</td>
+				<td>@student.Name</td>
+				<td>
+					<button class="btn btn-sm btn-primary">Generate Password</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

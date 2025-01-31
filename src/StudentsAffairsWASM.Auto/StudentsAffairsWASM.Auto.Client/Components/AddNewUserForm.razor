@@ -1,0 +1,18 @@
+﻿@namespace StudentsAffairsWASM.Auto.Client.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Students.Client.Components
+@using Tutors.Client.Components
+@using Admins.Client.Components
+
+@if (SelectedRole == "Student")
+{
+	<AddNewStudentForm/>
+}
+else if (SelectedRole == "Tutor")
+{
+	<AddNewTutorForm/>
+}
+else if (SelectedRole == "Admin")
+{
+	<AddNewAdminForm/>
+}
